@@ -28,3 +28,7 @@ I would like a statement of the activity related to my account
 | 13/01/2012         | 2000.00            |                    | 3000.00            |
 | 10/01/2012         | 1000.00            |                    | 1000.00            |
 
+### Classes
+
+![User class](https://github/ClaimingCookie5/Bank-Tech-Test/user_class.png)
+
