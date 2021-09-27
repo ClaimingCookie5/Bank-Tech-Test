@@ -2,7 +2,7 @@ require 'date'
 
 class User
 
-  attr_reader :balance, :transactions
+  attr_reader :transactions
 
   def initialize
     @transactions = { Date: [], Withdrawals: [], Deposits: [], Balance: [] }
@@ -17,7 +17,7 @@ class User
   end
 
   def calc_balance
-    (select(:Deposits).compact.sum - select(:Withdrawals).compact.sum).to_f
+    select(:Deposits).compact.sum - select(:Withdrawals).compact.sum
   end
 
   def generate_statement
@@ -44,6 +44,10 @@ class User
     @transactions[action]
   end
 
+  def to_two_dec(item)
+    item.nil? ? "" : '%.2f' % item
+  end
+
   def statement_head
     [      
       "\n| Date          | Withdrawals   | Deposits      | Balance       |\n",
@@ -53,9 +57,9 @@ class User
 
   def statement_body(index)
     [
-      "| #{select(:Date)[index]} ", "| #{select(:Withdrawals)[index]} ",
-       "| #{select(:Deposits)[index]} ", "| #{select(:Balance)[index]} "
+      "| #{select(:Date)[index]} ", "| #{to_two_dec(select(:Withdrawals)[index])} ",
+       "| #{to_two_dec(select(:Deposits)[index])} ", "| #{to_two_dec(select(:Balance)[index])} "
     ]
   end
-
+  
 end
