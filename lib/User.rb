@@ -5,21 +5,19 @@ class User
   attr_reader :balance, :transactions
 
   def initialize
-    @transactions = { date: [], withdrawals: [], deposits: [], balance: 0.00 }
+    @transactions = { date: [], withdrawals: [], deposits: [], balance: [] }
   end
 
   def deposit(ammount)
-    @balance += ammount
     log_transaction(@transactions[:deposits], @transactions[:withdrawals], ammount)
   end
 
   def withdraw(ammount)
-    @balance -= ammount
     log_transaction(@transactions[:withdrawals], @transactions[:deposits], ammount)
   end
 
   def calc_balance
-    @transactions[:deposits] - @transactions[:withdrawals]
+    (@transactions[:deposits].sum - @transactions[:withdrawals].sum).to_f
   end
 
   private
@@ -28,7 +26,7 @@ class User
     @transactions[:date].push(DateTime.now.strftime('%d-%m-%Y'))
     action.push(ammount.to_f)
     reverse_action.push(0.00)
-    @transactions[:balance] = balance
+    @transactions[:balance].push(calc_balance)
   end
 
 end

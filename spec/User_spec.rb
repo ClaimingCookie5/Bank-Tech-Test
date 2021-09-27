@@ -6,17 +6,17 @@ describe User do
   end
 
   it{ is_expected.to be_a(User) }
-  it{ is_expected.to have_attributes(balance: 0.00)}
+  it{ is_expected.to have_attributes(transactions: { date: [], withdrawals: [], deposits: [], balance: [] })}
 
   describe '#deposit' do
     it 'is expected to add number to balance' do
       subject.deposit(20)
-      expect(subject.balance).to eq(20.00)
+      expect(subject.calc_balance).to eq(20.00)
     end
 
     it 'is expected to add the transaction history to transactions on deposit' do
       subject.deposit(20)
-      expect(subject.transactions.balance).to include(date: ["28-09-2021"], withdrawals: [0.00], deposits: [20.00], balance: 20.00)
+      expect(subject.transactions).to include(date: ["28-09-2021"], withdrawals: [0.00], deposits: [20.00], balance: [20.00])
     end
 
   end
@@ -25,13 +25,13 @@ describe User do
     it 'is expected to subtract number from balance' do
       subject.deposit(20)
       subject.withdraw(5)
-      expect(subject.balance).to eq(15.00)
+      expect(subject.calc_balance).to eq(15.00)
     end
 
     it 'is expected to add the transaction history to transactions on withdrawal' do
       subject.deposit(20)
       subject.withdraw(20)
-      expect(subject.transactions).to include(date: ["28-09-2021", "28-09-2021"], withdrawals: [0.00, 20.00], deposits: [20.00, 0.00], balance: 0.00)
+      expect(subject.transactions).to include(date: ["28-09-2021", "28-09-2021"], withdrawals: [0.00, 20.00], deposits: [20.00, 0.00], balance: [20.00, 0.00])
     end
 
   end
