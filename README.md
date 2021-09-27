@@ -30,5 +30,5 @@ I would like a statement of the activity related to my account
 
 ### Classes
 
-![User class](https://github/ClaimingCookie5/Bank-Tech-Test/user_class.png)
+![User class](https://github/ClaimingCookie5/Bank-Tech-Test/user_class.png?raw=true)
 
