@@ -6,4 +6,8 @@ class User
     @balance = 0.00
   end
 
+  def deposit(ammount)
+    @balance += ammount
+  end
+
 end
