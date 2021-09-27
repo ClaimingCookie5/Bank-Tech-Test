@@ -16,7 +16,7 @@ describe User do
 
     it 'is expected to add the transaction history to transactions on deposit' do
       subject.deposit(20)
-      expect(subject.transactions).to include(date: ["28-09-2021"], withdrawals: [0.00], deposits: [20.00], balance: 20.00)
+      expect(subject.transactions.balance).to include(date: ["28-09-2021"], withdrawals: [0.00], deposits: [20.00], balance: 20.00)
     end
 
   end
