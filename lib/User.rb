@@ -9,15 +9,13 @@ class User
   end
 
   def deposit(ammount)
-    raise 'Please input a number' if !ammount.to_i.instance_of?(Integer) || !ammount.to_f.instance_of?(Float)
-    raise 'Please enter a positive number' if ammount < 0
+    deposit_errors(ammount)
 
     log_transaction(select(:Deposits), select(:Withdrawals), ammount)
   end
 
   def withdraw(ammount)
-    raise 'Please input a number' if !ammount.to_i.instance_of?(Integer) || !ammount.to_f.instance_of?(Float)
-    raise 'Insufficient funds. Make a deposit or try again' if calc_balance - ammount < 0
+    withdrawal_erros(ammount)
 
     log_transaction(select(:Withdrawals), select(:Deposits), ammount)
   end
@@ -50,7 +48,7 @@ class User
     @transactions[action]
   end
 
-  def to_two_dec(item)
+  def to_two_deci(item)
     item.nil? ? "" : '%.2f' % item
   end
 
@@ -63,9 +61,19 @@ class User
 
   def statement_body(index)
     [
-      "| #{select(:Date)[index]} ", "| #{to_two_dec(select(:Withdrawals)[index])} ",
-       "| #{to_two_dec(select(:Deposits)[index])} ", "| #{to_two_dec(select(:Balance)[index])} "
+      "| #{select(:Date)[index]} ", "| #{to_two_deci(select(:Withdrawals)[index])} ",
+       "| #{to_two_deci(select(:Deposits)[index])} ", "| #{to_two_deci(select(:Balance)[index])} "
     ]
+  end
+
+  def deposit_errors(input)
+    raise 'Please input a number' if !input.to_i.instance_of?(Integer) || !input.to_f.instance_of?(Float)
+    raise 'Please enter a positive number' if input < 0
+  end
+
+  def withdrawal_erros(input)
+    raise 'Please input a number' if !input.to_i.instance_of?(Integer) || !input.to_f.instance_of?(Float)
+    raise 'Insufficient funds. Make a deposit or try again' if calc_balance - input < 0
   end
   
 end
