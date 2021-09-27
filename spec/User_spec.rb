@@ -36,4 +36,16 @@ describe User do
 
   end
 
+  describe '#generate_statement' do
+    it 'is expected to generate a statement of transaction history' do
+      subject.deposit(200)
+      expect(subject.generate_statement).to contain_exactly(
+      "| Date       | Withdrawals | Deposits | Balance |\n",
+      "|------------|-------------|----------|---------|\n",
+      "| 28-09-2021 |             | 200.00   | 200.00  |\n",
+      )
+    end
+
+  end
+
 end

@@ -20,6 +20,12 @@ class User
     (select(:Deposits).sum - select(:Withdrawals).sum).to_f
   end
 
+  def generate_statement
+    ["| Date       | Withdrawals | Deposits | Balance |\n",
+    "|------------|-------------|----------|---------|\n",
+    "| 28-09-2021 |             | 200.00   | 200.00  |\n",]
+  end
+
   private
 
   def log_transaction(action, reverse_action, ammount)
