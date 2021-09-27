@@ -46,7 +46,7 @@ describe User do
 ")
     end
 
-    it 'is expected to generate an extensive statement ' do
+    it 'is expected to generate a more extensive statement ' do
       subject.deposit(2500)
       subject.withdraw(2000)
       subject.withdraw(1000)
