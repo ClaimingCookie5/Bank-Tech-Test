@@ -6,7 +6,7 @@ describe User do
   end
 
   it{ is_expected.to be_a(User) }
-  it{ is_expected.to have_attributes(transactions: { date: [], withdrawals: [], deposits: [], balance: [] })}
+  it{ is_expected.to have_attributes(transactions: { Date: [], Withdrawals: [], Deposits: [], Balance: [] })}
 
   describe '#deposit' do
     it 'is expected to add number to balance' do
@@ -16,7 +16,7 @@ describe User do
 
     it 'is expected to add the transaction history to transactions on deposit' do
       subject.deposit(20)
-      expect(subject.transactions).to include(date: ["28-09-2021"], withdrawals: [0.00], deposits: [20.00], balance: [20.00])
+      expect(subject.transactions).to include(Date: ["28-09-2021"], Withdrawals: [0.00], Deposits: [20.00], Balance: [20.00])
     end
 
   end
@@ -31,9 +31,9 @@ describe User do
     it 'is expected to add the transaction history to transactions on withdrawal' do
       subject.deposit(20)
       subject.withdraw(20)
-      expect(subject.transactions).to include(date: ["28-09-2021", "28-09-2021"], withdrawals: [0.00, 20.00], deposits: [20.00, 0.00], balance: [20.00, 0.00])
+      expect(subject.transactions).to include(Date: ["28-09-2021", "28-09-2021"], Withdrawals: [0.00, 20.00], Deposits: [20.00, 0.00], Balance: [20.00, 0.00])
     end
 
   end
-  
+
 end
