@@ -22,18 +22,10 @@ class User
 
   def generate_statement
     index = 0
-    statement = [      
-      "\n| Date          | Withdrawals   | Deposits      | Balance       |\n",
-      "|---------------|---------------|---------------|---------------|\n"
-    ]
-
+    statement = [statement_head]
     while index < select(:Date).length
-      log = [
-        "| #{select(:Date)[index]} ", "| #{select(:Withdrawals)[index]} ",
-         "| #{select(:Deposits)[index]} ", "| #{select(:Balance)[index]} "
-        ]
-      logs = log.map { |log| log.ljust(16) }.join
-      statement.push(logs << "|\n")
+      logs = statement_body(index).map { |log| log.ljust(16) }.join << "|\n"
+      statement.push(logs)
       index += 1
     end
     statement.flatten.join
@@ -50,6 +42,20 @@ class User
 
   def select(action)
     @transactions[action]
+  end
+
+  def statement_head
+    [      
+      "\n| Date          | Withdrawals   | Deposits      | Balance       |\n",
+      "|---------------|---------------|---------------|---------------|\n"
+    ]
+  end
+
+  def statement_body(index)
+    [
+      "| #{select(:Date)[index]} ", "| #{select(:Withdrawals)[index]} ",
+       "| #{select(:Deposits)[index]} ", "| #{select(:Balance)[index]} "
+    ]
   end
 
 end
