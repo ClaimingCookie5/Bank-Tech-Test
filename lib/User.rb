@@ -6,22 +6,25 @@ class User
 
   def initialize
     @balance = 0.00
-    @transactions = { date: [], withdrawals: [], deposits: [], balance: [] }
+    @transactions = { date: [], withdrawals: [], deposits: [], balance: 0.00 }
   end
 
   def deposit(ammount)
     @balance += ammount
-    @transactions[:date].push(DateTime.now.strftime('%d-%m-%Y'))
-    @transactions[:withdrawals].push(0.00)
-    @transactions[:deposits].push(ammount.to_f)
-    @transactions[:balance] = @balance
+    log_transaction(@transactions[:deposits], @transactions[:withdrawals], ammount)
   end
 
   def withdraw(ammount)
     @balance -= ammount
+    log_transaction(@transactions[:withdrawals], @transactions[:deposits], ammount)
+  end
+
+  private
+
+  def log_transaction(action, reverse_action, ammount)
     @transactions[:date].push(DateTime.now.strftime('%d-%m-%Y'))
-    @transactions[:withdrawals].push(ammount.to_f)
-    @transactions[:deposits].push(0.00)
+    action.push(ammount.to_f)
+    reverse_action.push(0.00)
     @transactions[:balance] = @balance
   end
 
