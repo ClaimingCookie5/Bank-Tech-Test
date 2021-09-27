@@ -10,10 +10,13 @@ class User
 
   def deposit(ammount)
     raise 'Please enter a positive number' if ammount < 0
+
     log_transaction(select(:Deposits), select(:Withdrawals), ammount)
   end
 
   def withdraw(ammount)
+    raise 'Insufficient funds. Make a deposit or try again' if calc_balance - ammount < 0
+
     log_transaction(select(:Withdrawals), select(:Deposits), ammount)
   end
 

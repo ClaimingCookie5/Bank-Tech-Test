@@ -27,6 +27,11 @@ describe User do
   end
 
   describe '#withdraw' do
+
+    it 'is expected to raise error if balance would go into negative' do
+      expect{ subject.withdraw(1000) }.to raise_error{ 'Insufficient funds. Make a deposit or try again' }
+    end
+
     it 'is expected to subtract number from balance' do
       subject.deposit(20)
       subject.withdraw(5)
@@ -53,12 +58,14 @@ describe User do
 
     it 'is expected to generate a more extensive statement ' do
       subject.deposit(2500)
+      subject.deposit(500)
       subject.withdraw(2000)
       subject.withdraw(1000)
       expect(subject.generate_statement).to match("
 | Date          | Withdrawals   | Deposits      | Balance       |
 |---------------|---------------|---------------|---------------|
-| 28-09-2021    |               | 2500.00       | 0.0           |
+| 28-09-2021    |               | 2500.00       | 0.00          |
+| 28-09-2021    |               | 500.00        | 2500.00       |
 | 28-09-2021    | 2000.00       |               | 3000.00       |
 | 28-09-2021    | 1000.00       |               | 1000.00       |
 ")
