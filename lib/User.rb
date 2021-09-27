@@ -16,6 +16,7 @@ class User
   end
 
   def withdraw(ammount)
+    raise 'Please input a number' if !ammount.to_i.instance_of?(Integer) || !ammount.to_f.instance_of?(Float)
     raise 'Insufficient funds. Make a deposit or try again' if calc_balance - ammount < 0
 
     log_transaction(select(:Withdrawals), select(:Deposits), ammount)

@@ -13,7 +13,7 @@ describe User do
       expect{ subject.deposit("ghde") }.to raise_error{ 'Please input a number' }
     end
 
-    it 'is no expected to raise error if input is Float' do
+    it 'is not expected to raise error if input is Float' do
       expect{ subject.deposit(10.59) }.not_to raise_error{ 'Please input a number' }
     end
 
@@ -34,9 +34,16 @@ describe User do
   end
 
   describe '#withdraw' do
+    it 'is expected to raise error if input is not number' do
+      expect{ subject.withdraw("ghde") }.to raise_error{ 'Please input a number' }
+    end
 
     it 'is expected to raise error if balance would go into negative' do
       expect{ subject.withdraw(1000) }.to raise_error{ 'Insufficient funds. Make a deposit or try again' }
+    end
+
+    it 'is not expected to raise error if input is Float' do
+      expect{ subject.deposit(10.59) }.not_to raise_error{ 'Please input a number' }
     end
 
     it 'is expected to subtract number from balance' do
