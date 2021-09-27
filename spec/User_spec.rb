@@ -42,7 +42,20 @@ describe User do
       expect(subject.generate_statement).to match("
 | Date          | Withdrawals   | Deposits      | Balance       |
 |---------------|---------------|---------------|---------------|
-| 28-09-2021    |               | 200.0         | 0.0           |
+| 28-09-2021    |               | 200.00        | 0.00          |
+")
+    end
+
+    it 'is expected to generate an extensive statement ' do
+      subject.deposit(2500)
+      subject.withdraw(2000)
+      subject.withdraw(1000)
+      expect(subject.generate_statement).to match("
+| Date          | Withdrawals   | Deposits      | Balance       |
+|---------------|---------------|---------------|---------------|
+| 28-09-2021    |               | 2500.00       | 0.0           |
+| 28-09-2021    | 2000.00       |               | 3000.00       |
+| 28-09-2021    | 1000.00       |               | 1000.00       |
 ")
     end
 
