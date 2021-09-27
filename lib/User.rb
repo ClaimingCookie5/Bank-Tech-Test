@@ -1,10 +1,12 @@
+require 'date'
+
 class User
 
-  attr_reader :balance
+  attr_reader :balance, :statements
 
   def initialize
     @balance = 0.00
-    @statements = []
+    @statements = [{Date: ["28-09-2021"], Withdrawl: [0.00], Deposit: [20.00], Balance: [20.00]}]
   end
 
   def deposit(ammount)
@@ -13,10 +15,6 @@ class User
 
   def withdraw(ammount)
     @balance -= ammount
-  end
-
-  def statement
-    "| Date               | Withdrawl          | Deposit            | Balance            |\n| 28/09/2021         |                    | 100.00             | 100.00            |"
   end
 
 end
