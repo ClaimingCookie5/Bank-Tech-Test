@@ -30,5 +30,5 @@ I would like a statement of the activity related to my account
 
 ### Classes
 
-[User Class](https://i.imgur.com/rZqP4Yol.png)
+https://i.imgur.com/rZqP4Yol.png
 
