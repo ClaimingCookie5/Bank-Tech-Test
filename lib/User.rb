@@ -2,15 +2,19 @@ require 'date'
 
 class User
 
-  attr_reader :balance, :statements
+  attr_reader :balance, :transactions
 
   def initialize
     @balance = 0.00
-    @statements = [{Date: ["28-09-2021"], Withdrawl: [0.00], Deposit: [20.00], Balance: [20.00]}]
+    @transactions = {date: [], withdrawals: [], deposits: [], balance: []}
   end
 
   def deposit(ammount)
     @balance += ammount
+    @transactions[:date].push(DateTime.now.strftime('%d-%m-%Y'))
+    @transactions[:withdrawals].push(0.00)
+    @transactions[:deposits].push(ammount.to_f)
+    @transactions[:balance].push(@balance)
   end
 
   def withdraw(ammount)
