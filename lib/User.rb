@@ -9,6 +9,7 @@ class User
   end
 
   def deposit(ammount)
+    raise 'Please input a number' if !ammount.to_i.instance_of?(Integer) || !ammount.to_f.instance_of?(Float)
     raise 'Please enter a positive number' if ammount < 0
 
     log_transaction(select(:Deposits), select(:Withdrawals), ammount)
