@@ -2,7 +2,7 @@
 
 ````
 As a customer
-So I my account has money in it
+So my account has money in it
 I would like to deposit money into my bank account
 
 As a bank customer
