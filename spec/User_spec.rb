@@ -9,6 +9,11 @@ describe User do
   it{ is_expected.to have_attributes(transactions: { Date: [], Withdrawals: [], Deposits: [], Balance: [] })}
 
   describe '#deposit' do
+
+    it 'is expected to raise error if number is negative' do
+      expect{ subject.deposit(-1000) }.to raise_error{ 'Please enter a positive number' }
+    end
+
     it 'is expected to add number to balance' do
       subject.deposit(20)
       expect(subject.calc_balance).to eq(20.00)
