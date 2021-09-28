@@ -21,9 +21,8 @@ describe User do
 
   context '#withdraw' do
     it 'is expected to subtract number from balance' do
-      subject.deposit(20)
-      subject.withdraw(5)
-      expect(subject.calc_balance).to eq(15.00)
+      allow(transaction).to receive(:create) { 20.00 }
+      expect(subject.withdraw(transaction, 20.00)).to eq(20.00)
     end
 
   #   it 'is expected to add the transaction history to transactions on withdrawal' do
