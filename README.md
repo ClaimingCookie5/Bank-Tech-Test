@@ -65,7 +65,7 @@ I would like a statement of the activity related to my account
 Fork this Repo. Clone it to your preferred code editor.
 Open this directory and start up a `repl` and enter the following.
 
-*anything surrounded by either '`'or '<>' is a description*
+*anything surrounded by either '`' or '<>' is a description*
 
 ````
 require './lib/account.rb'
