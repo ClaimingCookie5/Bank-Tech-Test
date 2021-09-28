@@ -15,7 +15,7 @@ class User
   end
 
   def withdraw(ammount)
-    withdrawal_erros(ammount)
+    withdrawal_errors(ammount)
 
     log_transaction(select(:Withdrawals), select(:Deposits), ammount)
   end
@@ -71,7 +71,7 @@ class User
     raise 'Please enter a positive number' if input < 0
   end
 
-  def withdrawal_erros(input)
+  def withdrawal_errors(input)
     raise 'Please input a number' if !input.to_i.instance_of?(Integer) || !input.to_f.instance_of?(Float)
     raise 'Insufficient funds. Make a deposit or try again' if calc_balance - input < 0
   end
