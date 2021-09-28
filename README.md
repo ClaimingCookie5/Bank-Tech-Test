@@ -16,6 +16,10 @@ On withdraw 3 items are logged to the transacions hash -  ammount to deposit, ni
 When calculating balance. It sums the total balance history of all transactions.
 gen_statement generates a transaction history from the transaction hash.
 
+The reason I've done it this way is I've tried to follow TDD, trusting that the answers will show themselves to me.
+The reason I've chosen not to store the balance as a variable is, sometime ago we had a Makers lesson and the coach
+was saying that Monzo doesn't store it either (so I tried to do that).
+
 ### User stories
 
 ````
@@ -39,6 +43,7 @@ As a customer
 So I know how much I've deposited/withdrawn
 I would like a statement of the activity related to my account
 ````
+## it should look something like this
 
 | Date               | Withdrawl          | Deposit            | Balance            |
 |--------------------|--------------------|--------------------|--------------------|
@@ -53,3 +58,24 @@ I would like a statement of the activity related to my account
 ### Working application
 
 ![Working application](screenshots/working_app.png)
+
+## How to use it
+
+Startup a `repl` and enter the following.
+````
+require './lib/account.rb'
+
+account = Account.new
+
+account.deposit(< any number >) `it will error if it's not a integer, float or negative number`
+
+account.withdraw(< any number >) `it will error if it's not a integer, float, negative number or balance would be reduced below zero`
+
+account.calc_balance `this will return the current balance - the output is a number`
+
+account.gen_statement `this will generate a table like the image above`
+
+quit `this will exit the repl for you`
+
+````
+
