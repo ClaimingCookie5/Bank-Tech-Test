@@ -5,7 +5,7 @@ require 'date'
 # Class that tracks users transactions.
 # Allows them to make deposits, withdrawals,
 # check their current balance and make a bank stament.
-class User
+class Account
   attr_reader :transactions
 
   def initialize
@@ -31,12 +31,13 @@ class User
   def generate_statement
     index = 0
     statement = [statement_head]
+    # Using select(:Date) because this field is always updated on withdraw/deposit
     while index < select(:Date).length
-      logs = statement_body(index).map { |log| log.ljust(16) }.join << "|\n"
+      logs = statement_body(index).map { |log| log.ljust(20) }.join << "|\n"
       statement.push(logs)
       index += 1
     end
-    statement.join
+    print statement.join
   end
 
   private
@@ -58,8 +59,8 @@ class User
 
   def statement_head
     [
-      "\n| Date          | Withdrawals   | Deposits      | Balance       |\n",
-      "|---------------|---------------|---------------|---------------|\n"
+      "\n| Date              | Withdrawals       | Deposits          | Balance           |\n",
+      "|-------------------|-------------------|-------------------|-------------------|\n"
     ]
   end
 

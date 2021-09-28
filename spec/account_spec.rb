@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'user'
+require 'account'
 
-describe User do
+describe Account do
   before(:each) do
     allow(DateTime).to receive(:now).and_return DateTime.new(2021, 9, 28)
   end
 
-  it { is_expected.to be_a(User) }
+  it { is_expected.to be_a(Account) }
   it { is_expected.to have_attributes(transactions: { Date: [], Withdrawals: [], Deposits: [], Balance: [] }) }
 
   describe '#deposit' do
@@ -67,26 +67,25 @@ describe User do
   describe '#generate_statement' do
     it 'is expected to generate a statement of transaction history' do
       subject.deposit(200)
-      expect(subject.generate_statement).to eq("
-| Date          | Withdrawals   | Deposits      | Balance       |
-|---------------|---------------|---------------|---------------|
-| 28-09-2021    |               | 200.00        | 0.00          |
-")
+      expect { subject.generate_statement }.to output {'| Date              | Withdrawals       | Deposits          | Balance           |
+                                                        |-------------------|-------------------|-------------------|-------------------|
+                                                        | 28-09-2021        |                   | 200.00            | 0.00              |'
+      }.to_stdout
     end
 
     it 'is expected to generate a more extensive statement ' do
       subject.deposit(2500)
       subject.deposit(500)
+      allow(DateTime).to receive(:now).and_return DateTime.new(2021, 9, 29)
       subject.withdraw(2000)
       subject.withdraw(1000)
-      expect(subject.generate_statement).to eq("
-| Date          | Withdrawals   | Deposits      | Balance       |
-|---------------|---------------|---------------|---------------|
-| 28-09-2021    |               | 2500.00       | 0.00          |
-| 28-09-2021    |               | 500.00        | 2500.00       |
-| 28-09-2021    | 2000.00       |               | 3000.00       |
-| 28-09-2021    | 1000.00       |               | 1000.00       |
-")
+      expect { subject.generate_statement }.to output {'| Date              | Withdrawals       | Deposits          | Balance           |
+                                                        |-------------------|-------------------|-------------------|-------------------|
+                                                        | 28-09-2021        |                   | 2500.00           | 0.00              |
+                                                        | 28-09-2021        |                   | 500.00            | 2500.00           |
+                                                        | 29-09-2021        | 2000.00           |                   | 3000.00           |
+                                                        | 29-09-2021        | 1000.00           |                   | 1000.00           |'
+      }.to_stdout
     end
   end
 end
