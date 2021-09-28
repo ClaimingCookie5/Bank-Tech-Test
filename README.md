@@ -28,7 +28,10 @@ I would like a statement of the activity related to my account
 | 13/01/2012         | 2000.00            |                    | 3000.00            |
 | 10/01/2012         | 1000.00            |                    | 1000.00            |
 
-### Classes
+### Class
 
-[User class](https://i.imgur.com/rZqP4Yo.png)
+![User class](screenshots/Screenshot 2021-09-27 at 16.19.14.png)
 
+### Working application
+
+![Working application] (screenshots/Screenshot 2021-09-28 at 13.12.39.png)
