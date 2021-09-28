@@ -30,8 +30,8 @@ I would like a statement of the activity related to my account
 
 ### Class
 
-![User class](screenshots/Screenshot 2021-09-27 at 16.19.14.png)
+![User class](screenshots/class_model.png)
 
 ### Working application
 
-![Working application] (screenshots/Screenshot 2021-09-28 at 13.12.39.png)
+![Working application] (screenshots/working_app.png)
