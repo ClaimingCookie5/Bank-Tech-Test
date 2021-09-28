@@ -7,4 +7,11 @@ describe Transaction do
 
   it { is_expected.to have_attributes( transaction: { Date: '28-09-2021', Withdrawal: 0.00, Deposit: 0.00}) }
 
+  describe '.create_new_instance' do
+
+    it 'is expected to create new instance of Transaction' do
+      expect(subject.create_new_instance).to be_an_instance_of(Transaction)
+    end
+
+  end
 end
