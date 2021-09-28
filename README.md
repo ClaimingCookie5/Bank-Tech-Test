@@ -43,6 +43,7 @@ As a customer
 So I know how much I've deposited/withdrawn
 I would like a statement of the activity related to my account
 ````
+
 ## it should look something like this
 
 | Date               | Withdrawl          | Deposit            | Balance            |
@@ -61,7 +62,11 @@ I would like a statement of the activity related to my account
 
 ## How to use it
 
-Startup a `repl` and enter the following.
+Fork this Repo. Clone it to your preferred code editor.
+Open this directory and start up a `repl` and enter the following.
+
+*anything surrounded by either '`'or '<>' is a description*
+
 ````
 require './lib/account.rb'
 
