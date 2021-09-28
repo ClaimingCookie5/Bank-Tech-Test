@@ -13,11 +13,7 @@ class User
   def withdraw(transaction, ammount)
     transaction.create(0.00, ammount)
   end
-
-  def calc_balance
-    select(:Deposits).compact.sum - select(:Withdrawals).compact.sum
-  end
-
+  
   def generate_statement
     index = 0
     statement = [statement_head]
@@ -29,14 +25,6 @@ class User
   end
 
   private
-
-  def log_transaction(action, reverse_action, ammount)
-    select(:Date).push(DateTime.now.strftime('%d-%m-%Y'))
-    select(:Balance).push(calc_balance)
-    action.push(ammount.to_f)
-    reverse_action.push(nil)
-  end
-
   def select(action)
     @transactions[action]
   end
