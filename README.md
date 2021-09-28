@@ -34,4 +34,4 @@ I would like a statement of the activity related to my account
 
 ### Working application
 
-![Working application] (screenshots/working_app.png)
+![Working application](screenshots/working_app.png)
