@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 require 'date'
 
+# Class that tracks users transactions.
+# Allows them to make deposits, withdrawals,
+# check their current balance and make a bank stament.
 class User
-
   attr_reader :transactions
 
   def initialize
@@ -32,7 +36,7 @@ class User
       statement.push(logs)
       index += 1
     end
-    statement.flatten.join
+    statement.join
   end
 
   private
@@ -49,11 +53,11 @@ class User
   end
 
   def to_two_deci(item)
-    item.nil? ? "" : '%.2f' % item
+    item.nil? ? '' : '%.2f' % item
   end
 
   def statement_head
-    [      
+    [
       "\n| Date          | Withdrawals   | Deposits      | Balance       |\n",
       "|---------------|---------------|---------------|---------------|\n"
     ]
@@ -62,22 +66,21 @@ class User
   def statement_body(index)
     [
       "| #{select(:Date)[index]} ", "| #{to_two_deci(select(:Withdrawals)[index])} ",
-       "| #{to_two_deci(select(:Deposits)[index])} ", "| #{to_two_deci(select(:Balance)[index])} "
+      "| #{to_two_deci(select(:Deposits)[index])} ", "| #{to_two_deci(select(:Balance)[index])} "
     ]
   end
 
   def deposit_errors(input)
     not_num_err(input)
-    raise 'Please enter a positive number' if input < 0
+    raise 'Please enter a positive number' if input.negative?
   end
 
   def withdrawal_errors(input)
     not_num_err(input)
-    raise 'Insufficient funds. Make a deposit or try again' if calc_balance - input < 0
+    raise 'Insufficient funds. Make a deposit or try again' if (calc_balance - input).negative?
   end
-  
+
   def not_num_err(input)
     raise 'Please input a number' if !input.to_i.instance_of?(Integer) || !input.to_f.instance_of?(Float)
   end
-
 end
