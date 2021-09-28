@@ -12,10 +12,10 @@ class User
     transaction.create(ammount)
   end
 
-  def withdraw(ammount)
+  def withdraw(transaction, ammount)
     withdrawal_errors(ammount)
 
-    log_transaction(select(:Withdrawals), select(:Deposits), ammount)
+    transaction.create(0.00, ammount)
   end
 
   def calc_balance

@@ -32,10 +32,10 @@ describe User do
     end
   end
 
-  # context '#withdraw' do
-  #   it 'is expected to raise error if input is not number' do
-  #     expect { subject.withdraw('ghde') }.to raise_error { 'Please input a number' }
-  #   end
+  context '#withdraw' do
+    it 'is expected to raise error if input is not number' do
+      expect { subject.withdraw('ghde') }.to raise_error { 'Please input a number' }
+    end
 
   #   it 'is expected to raise error if balance would go into negative' do
   #     expect { subject.withdraw(1000) }.to raise_error('Insufficient funds. Make a deposit or try again')
@@ -62,7 +62,7 @@ describe User do
   #       Date: %w[28-09-2021 28-09-2021], Withdrawals: [nil, 20.00], Deposits: [20.00, nil], Balance: [0.00, 20.00]
   #     )
   #   end
-  # end
+  end
 
   # context '#generate_statement' do
   #   it 'is expected to generate a statement of transaction history' do
