@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require 'date'
 
+# Handles creation of transaction. Relates to the User class.
 class Transaction
   attr_reader :transaction
 
@@ -8,6 +11,6 @@ class Transaction
   end
 
   def self.create(deposit = 0.00, withdraw = 0.00)
-    Transaction.new(deposit: deposit, withdraw:  withdraw)
+    Transaction.new(deposit: deposit, withdraw: withdraw)
   end
 end
