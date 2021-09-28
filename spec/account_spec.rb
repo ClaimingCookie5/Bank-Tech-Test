@@ -10,7 +10,7 @@ describe Account do
   it { is_expected.to be_a(Account) }
   it { is_expected.to have_attributes(transactions: { Date: [], Withdrawals: [], Deposits: [], Balance: [] }) }
 
-  describe '#deposit' do
+  context '#deposit' do
     it 'is expected to raise error if input is not number' do
       expect { subject.deposit('ghde') }.to raise_error { 'Please input a number' }
     end
@@ -36,7 +36,7 @@ describe Account do
     end
   end
 
-  describe '#withdraw' do
+  context '#withdraw' do
     it 'is expected to raise error if input is not number' do
       expect { subject.withdraw('ghde') }.to raise_error { 'Please input a number' }
     end
@@ -68,7 +68,7 @@ describe Account do
     end
   end
 
-  describe '#generate_statement' do
+  context '#generate_statement' do
     it 'is expected to generate a statement of transaction history' do
       subject.deposit(200)
       expect { subject.generate_statement }.to output {'| Date              | Withdrawals       | Deposits          | Balance           |

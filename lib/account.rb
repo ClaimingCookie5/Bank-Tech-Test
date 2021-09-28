@@ -31,10 +31,8 @@ class Account
   def generate_statement
     index = 0
     statement = [statement_head]
-    # Using select(:Date) because this field is always updated on withdraw/deposit
     while index < select(:Date).length
-      logs = statement_body(index).map { |log| log.ljust(20) }.join << "|\n"
-      statement.push(logs)
+      statement.push(statement_body(index).map { |log| log.ljust(20) }.join << "|\n")
       index += 1
     end
     print statement.join
