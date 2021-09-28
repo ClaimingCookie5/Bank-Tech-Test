@@ -16,5 +16,9 @@ describe Transaction do
       expect(Transaction.create(10.00)).to have_attributes(transaction: { Date: '28-09-2021', Withdraw: 0.00, Deposit: 10.00 })
     end
 
+    it 'is expected to add number to deposit' do
+      expect(Transaction.create(0.00, 10.00)).to have_attributes(transaction: { Date: '28-09-2021', Withdraw: 10.00, Deposit: 0.00 })
+    end
+
   end
 end
