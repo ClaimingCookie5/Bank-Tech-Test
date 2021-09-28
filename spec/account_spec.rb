@@ -45,6 +45,10 @@ describe Account do
       expect { subject.withdraw(1000) }.to raise_error('Insufficient funds. Make a deposit or try again')
     end
 
+    it 'is expected to raise error if withdrawing negative number' do
+      expect { subject.withdraw(-1000) }.to raise_error { 'Please input a number' }
+    end
+
     it 'is not expected to raise error if input is Float' do
       expect { subject.deposit(10.59) }.not_to raise_error { 'Please input a number' }
     end

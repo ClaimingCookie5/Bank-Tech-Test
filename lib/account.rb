@@ -13,7 +13,7 @@ class Account
   end
 
   def deposit(ammount)
-    deposit_errors(ammount)
+    base_errs(ammount)
 
     log_transaction(select(:Deposits), select(:Withdrawals), ammount)
   end
@@ -71,17 +71,13 @@ class Account
     ]
   end
 
-  def deposit_errors(input)
-    not_num_err(input)
-    raise 'Please enter a positive number' if input.negative?
-  end
-
   def withdrawal_errors(input)
-    not_num_err(input)
+    base_errs(input)
     raise 'Insufficient funds. Make a deposit or try again' if (calc_balance - input).negative?
   end
 
-  def not_num_err(input)
+  def base_errs(input)
+    raise 'Please enter a positive number' if input.negative?
     raise 'Please input a number' if !input.to_i.instance_of?(Integer) || !input.to_f.instance_of?(Float)
   end
 end
