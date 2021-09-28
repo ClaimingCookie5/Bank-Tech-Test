@@ -30,13 +30,6 @@ describe User do
       allow(transaction).to receive(:create) { 20.00 }
       expect(subject.deposit(transaction, 20)).to eq(20.00)
     end
-
-  #   it 'is expected to add the transaction history to transactions on deposit' do
-  #     subject.deposit(20)
-  #     expect(subject.transactions).to eq(
-  #       Date: %w[28-09-2021], Withdrawals: [nil], Deposits: [20.00], Balance: [0.00]
-  #     )
-  #   end
   end
 
   # context '#withdraw' do
