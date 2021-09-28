@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-require 'date'
-
 # Class that tracks users transactions.
 # Allows them to make deposits, withdrawals,
 # check their current balance and make a bank stament.
-class Account
+class User
   attr_reader :transactions
 
   def initialize

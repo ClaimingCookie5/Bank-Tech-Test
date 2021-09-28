@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'account'
+require 'user'
 
-describe Account do
+describe User do
   before(:each) do
     allow(DateTime).to receive(:now).and_return DateTime.new(2021, 9, 28)
   end
 
-  it { is_expected.to be_a(Account) }
+  it { is_expected.to be_a(User) }
   it { is_expected.to have_attributes(transactions: { Date: [], Withdrawals: [], Deposits: [], Balance: [] }) }
 
   context '#deposit' do
