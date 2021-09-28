@@ -1,19 +1,15 @@
 # frozen_string_literal: true
+require_relative 'transactions'
 
 # Class that tracks users transactions.
 # Allows them to make deposits, withdrawals,
 # check their current balance and make a bank stament.
 class User
-  attr_reader :transactions
 
-  def initialize
-    @transactions = { Date: [], Withdrawals: [], Deposits: [], Balance: [] }
-  end
-
-  def deposit(ammount)
+  def deposit(transaction, ammount)
     base_errs(ammount)
 
-    log_transaction(select(:Deposits), select(:Withdrawals), ammount)
+    transaction.create(ammount)
   end
 
   def withdraw(ammount)
