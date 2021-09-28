@@ -67,13 +67,17 @@ class User
   end
 
   def deposit_errors(input)
-    raise 'Please input a number' if !input.to_i.instance_of?(Integer) || !input.to_f.instance_of?(Float)
+    not_num_err(input)
     raise 'Please enter a positive number' if input < 0
   end
 
   def withdrawal_errors(input)
-    raise 'Please input a number' if !input.to_i.instance_of?(Integer) || !input.to_f.instance_of?(Float)
+    not_num_err(input)
     raise 'Insufficient funds. Make a deposit or try again' if calc_balance - input < 0
   end
   
+  def not_num_err(input)
+    raise 'Please input a number' if !input.to_i.instance_of?(Integer) || !input.to_f.instance_of?(Float)
+  end
+
 end

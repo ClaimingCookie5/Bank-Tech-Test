@@ -28,7 +28,7 @@ describe User do
 
     it 'is expected to add the transaction history to transactions on deposit' do
       subject.deposit(20)
-      expect(subject.transactions).to include(Date: ["28-09-2021"], Withdrawals: [nil], Deposits: [20.00], Balance: [0.00])
+      expect(subject.transactions).to eq(Date: ["28-09-2021"], Withdrawals: [nil], Deposits: [20.00], Balance: [0.00])
     end
 
   end
@@ -55,7 +55,7 @@ describe User do
     it 'is expected to add the transaction history to transactions on withdrawal' do
       subject.deposit(20)
       subject.withdraw(20)
-      expect(subject.transactions).to include(Date: ["28-09-2021", "28-09-2021"], Withdrawals: [nil, 20.00], Deposits: [20.00, nil], Balance: [0.00, 20.00])
+      expect(subject.transactions).to eq(Date: ["28-09-2021", "28-09-2021"], Withdrawals: [nil, 20.00], Deposits: [20.00, nil], Balance: [0.00, 20.00])
     end
 
   end
@@ -63,7 +63,7 @@ describe User do
   describe '#generate_statement' do
     it 'is expected to generate a statement of transaction history' do
       subject.deposit(200)
-      expect(subject.generate_statement).to match("
+      expect(subject.generate_statement).to eq("
 | Date          | Withdrawals   | Deposits      | Balance       |
 |---------------|---------------|---------------|---------------|
 | 28-09-2021    |               | 200.00        | 0.00          |
@@ -75,7 +75,7 @@ describe User do
       subject.deposit(500)
       subject.withdraw(2000)
       subject.withdraw(1000)
-      expect(subject.generate_statement).to match("
+      expect(subject.generate_statement).to eq("
 | Date          | Withdrawals   | Deposits      | Balance       |
 |---------------|---------------|---------------|---------------|
 | 28-09-2021    |               | 2500.00       | 0.00          |
