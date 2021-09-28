@@ -1,5 +1,23 @@
 ## Bank Tech test
 
+##### The I way approached it
+
+I am tasked with building a simple 'Banking app'.
+First I read through the [instructions](https://github.com/makersacademy/course/blob/main/individual_challenges/bank_tech_test.md).
+Created user stories from what the specs were.
+Following what makers has taught so far I created a model of what I thought the app would look like.
+Starting simple and trying to follow TDD to build it up incrementally.
+
+##### The way I structured it
+
+There are four methods.
+On deposit 3 items are logged to the transacions hash - nil, ammount to deposit and balance before deposit.
+On withdraw 3 items are logged to the transacions hash -  ammount to deposit, nil and balance before deposit.
+When calculating balance. It sums the total balance history of all transactions.
+gen_statement generates a transaction history from the transaction hash.
+
+### User stories
+
 ````
 As a customer
 So my account has money in it
