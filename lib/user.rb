@@ -7,14 +7,10 @@ require_relative 'transactions'
 class User
 
   def deposit(transaction, ammount)
-    base_errs(ammount)
-
     transaction.create(ammount)
   end
 
   def withdraw(transaction, ammount)
-    withdrawal_errors(ammount)
-
     transaction.create(0.00, ammount)
   end
 
@@ -61,15 +57,5 @@ class User
       "| #{select(:Date)[index]} ", "| #{to_two_deci(select(:Withdrawals)[index])} ",
       "| #{to_two_deci(select(:Deposits)[index])} ", "| #{to_two_deci(select(:Balance)[index])} "
     ]
-  end
-
-  def withdrawal_errors(input)
-    base_errs(input)
-    raise 'Insufficient funds. Make a deposit or try again' if (calc_balance - input).negative?
-  end
-
-  def base_errs(input)
-    raise 'Please enter a positive number' if input.negative?
-    raise 'Please input a number' if !input.to_i.instance_of?(Integer) || !input.to_f.instance_of?(Float)
   end
 end

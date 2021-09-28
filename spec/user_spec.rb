@@ -13,47 +13,18 @@ describe User do
   it { is_expected.to be_a(User) }
 
   context '#deposit' do
-    it 'is expected to raise error if input is not number' do
-      expect { subject.deposit('ghde') }.to raise_error { 'Please input a number' }
-    end
-
-    it 'is not expected to raise error if input is Float' do
-      allow(transaction).to receive(:create) { 10.59}
-      expect { subject.deposit(transaction, 10.59) }.not_to raise_error { 'Please input a number' }
-    end
-
-    it 'is expected to raise error if number is negative' do
-      expect { subject.deposit(-1000) }.to raise_error { 'Please enter a positive number' }
-    end
-
     it 'is expected to deposit ammount' do
       allow(transaction).to receive(:create) { 20.00 }
-      expect(subject.deposit(transaction, 20)).to eq(20.00)
+      expect(subject.deposit(transaction, 20.00)).to eq(20.00)
     end
   end
 
   context '#withdraw' do
-    it 'is expected to raise error if input is not number' do
-      expect { subject.withdraw('ghde') }.to raise_error { 'Please input a number' }
+    it 'is expected to subtract number from balance' do
+      subject.deposit(20)
+      subject.withdraw(5)
+      expect(subject.calc_balance).to eq(15.00)
     end
-
-  #   it 'is expected to raise error if balance would go into negative' do
-  #     expect { subject.withdraw(1000) }.to raise_error('Insufficient funds. Make a deposit or try again')
-  #   end
-
-  #   it 'is expected to raise error if withdrawing negative number' do
-  #     expect { subject.withdraw(-1000) }.to raise_error { 'Please input a number' }
-  #   end
-
-  #   it 'is not expected to raise error if input is Float' do
-  #     expect { subject.deposit(10.59) }.not_to raise_error { 'Please input a number' }
-  #   end
-
-  #   it 'is expected to subtract number from balance' do
-  #     subject.deposit(20)
-  #     subject.withdraw(5)
-  #     expect(subject.calc_balance).to eq(15.00)
-  #   end
 
   #   it 'is expected to add the transaction history to transactions on withdrawal' do
   #     subject.deposit(20)
