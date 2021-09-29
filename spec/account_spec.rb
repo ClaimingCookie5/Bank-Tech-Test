@@ -13,6 +13,10 @@ describe Account do
       subject.new_transaction(transaction, 20.00, 0.00)
       expect(subject.logs).to contain_exactly(20.00)
     end
-  end
 
+    it 'is expected to update balance on transaction' do
+      allow(transaction).to receive(:create) { 20.00 }
+      expect { subject.new_transaction(transaction, 20.00, 0.00) }.to change { subject.balance }.by(20.00)
+    end
+  end
 end

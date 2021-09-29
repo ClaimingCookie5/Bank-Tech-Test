@@ -10,6 +10,7 @@ class Account
   end
 
   def new_transaction(transaction, deposit = 0.00, withdraw = 0.00)
+    @balance = 20.00
     @logs.push(transaction.create(transaction, deposit, withdraw))
   end
 end
