@@ -14,7 +14,7 @@ describe User do
   context '#deposit' do
     it 'is expected to deposit ammount' do
       allow(transaction).to receive(:create) { 20.00 }
-      expect(subject.deposit(transaction, 20.00)).to eq(20.00)
+      expect(subject.deposit(transaction, 20.00)).to eq([20.00])
     end
   end
 
