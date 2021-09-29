@@ -21,7 +21,7 @@ describe User do
   context '#withdraw' do
     it 'is expected to subtract number from balance' do
       allow(transaction).to receive(:create) { 20.00 }
-      expect(subject.withdraw(transaction, 20.00)).to eq(20.00)
+      expect(subject.withdraw(transaction, 20.00)).to eq([20.00])
     end
   end
 end

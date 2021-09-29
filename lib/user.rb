@@ -15,6 +15,6 @@ class User
   end
 
   def withdraw(transaction, ammount)
-    transaction.create(0.00, ammount)
+    @account.new_transaction(transaction, 0.00, ammount)
   end
 end
