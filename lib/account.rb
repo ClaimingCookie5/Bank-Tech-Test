@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-# Outputs transaction information
+# Holds and Outputs transaction information
 class Account
-  attr_reader :logs
+  attr_reader :logs, :balance
 
   def initialize
+    @balance = 0.0
     @logs = []
   end
 
